@@ -19,6 +19,6 @@ angular.module('appg.directives', [])
       restrict: 'EA',
       scope: '=',
       replace: true,
-      templateURL: '/views/navbar.html'
+      templateUrl: '/views/navbar.html'
     }
   });

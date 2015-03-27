@@ -14,24 +14,24 @@ var appg = angular.module('appg', ['ui.router', 'appg.landingCtrl', 'appg.direct
       template: '<appg-welcome></appg-welcome>'
     })
 //     // .state('landing.login', {
-//     //   url:'/meat',
-//     //   template: '<shapp-meat></shapp-meat>',
-//     //   controller: 'MeatController'
+//     //   url:'/login',
+//     //   template: '<appg-login></appg-login>',
+//     //   controller: 'LoginController'
 //     // })
 //     // .state('landing.signup', {
-//     //   url:'/meat',
-//     //   template: '<shapp-meat></shapp-meat>',
-//     //   controller: 'MeatController'
+//     //   url:'/signup',
+//     //   template: '<appg-signup></appg-signup>',
+//     //   controller: 'SignupController'
 //     // })
 //     // .state('landing.search', {
-//     //   url:'/roulette',
-//     //   template: '<shapp-roulette></shapp-roulette>',
-//     //   controller: 'RouletteController'
+//     //   url:'/search',
+//     //   template: '<appg-search></appg-search>',
+//     //   controller: 'SearchController'
 //     // })
 //     // .state('landing.post', {
-//     //   url:'/roulette',
-//     //   template: '<shapp-roulette></shapp-roulette>',
-//     //   controller: 'RouletteController'
+//     //   url:'/post',
+//     //   template: '<appg-post></appg-post>',
+//     //   controller: 'PostController'
 //     // })
 
 
