@@ -4,38 +4,42 @@ var uglify = require('gulp-uglify');
 var nodemon = require('gulp-nodemon');
 var gulp   = require('gulp');
 var jshint = require('gulp-jshint');
+var stylish = require('jshint-stylish');
 var environment = process.env.ENVIRONMENT || 'development';
 
-if(environment === 'production'){
-  gulp.task('js', function(){
+
+gulp.task('js', function(){
+  if(environment === 'production'){
     gulp.src(['bower_components/angular/angular.min.js',
              'bower_components/angular-ui-router/release/angular-ui-router.min.js',
-             'public/javascripts/app.js',
+             'public/app.js',
              'public/javascripts/**/*.js'])
       .pipe(concat('appDist.js'))
       .pipe(uglify())
     .pipe(gulp.dest('public/assets'))
-  })
-}else{
-  gulp.task('js', function(){
+
+  }else{
+
     gulp.src(['bower_components/angular/angular.min.js',
              'bower_components/angular-ui-router/release/angular-ui-router.min.js',
-             'public/javascripts/app.js',
+             'public/app.js',
              'public/javascripts/**/*.js'])
       .pipe(concat('appDist.js'))
     .pipe(gulp.dest('public/assets'))
-  })
-}
+    
+  }
+})
+
 
 
 gulp.task('watch:js', ['jshint', 'js'], function(){
-  gulp.watch('public/javascripts/**/*.js', ['jshint', 'js'])
+  gulp.watch('public/**/*.js', ['jshint', 'js'])
 })
 
 gulp.task('jshint', function() {
-  return gulp.src('public/javascript/**/*.js')
+  return gulp.src('public/**/*.js')
     .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'));
+    .pipe(jshint.reporter(stylish));
 });
 
 gulp.task('start', function(){
