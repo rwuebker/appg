@@ -1,5 +1,5 @@
 'use strict'
-var appg = angular.module('appg', ['ui.router', 'appg.landingCtrl'])
+var appg = angular.module('appg', ['ui.router', 'appg.landingCtrl', 'appg.directives'])
 
 
 // console.log("hello");
