@@ -1,0 +1,4 @@
+node_modules
+config/env.vars.js
+config/npm-debug.log
+bower_components
