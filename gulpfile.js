@@ -10,7 +10,7 @@ var environment = process.env.ENVIRONMENT || 'development';
 
 gulp.task('js', function(){
   if(environment === 'production'){
-    gulp.src(['public/javascripts/vendors/angular/angular.min.js',
+    gulp.src(['public/javascripts/vendors/angular.min.js',
              'public/javascripts/vendors/angular-ui-router.min.js',
              'public/app.js',
              'public/javascripts/**/*.js'])
@@ -20,7 +20,7 @@ gulp.task('js', function(){
 
   }else{
 
-    gulp.src(['public/javascripts/vendors/angular/angular.min.js',
+    gulp.src(['public/javascripts/vendors/angular.min.js',
              'public/javascripts/vendors/angular-ui-router.min.js',
              'public/app.js',
              'public/javascripts/**/*.js'])
@@ -38,7 +38,13 @@ gulp.task('watch:js', ['jshint', 'js'], function(){
 })
 
 gulp.task('jshint', function() {
-  return gulp.src('public/**/*.js')
+  return gulp.src([
+      'public/javascripts/controllers/*.js',
+      'public/javascripts/directives/*.js',
+      'public/javascripts/services/*.js',
+      'public/javascripts/factories/*.js',
+      'public/app.js'
+    ])
     .pipe(jshint())
     .pipe(jshint.reporter(stylish));
 });
