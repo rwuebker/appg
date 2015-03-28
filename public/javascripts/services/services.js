@@ -64,7 +64,6 @@ angular.module('appg.services', [])
         if (errorStatus) { 
           console.log("there was an error: ", errorMessage);
         } else { 
-          console.log("success, here is entity: ", entity)
 
            //entityUuid = entity._data.uuid; //saving the UUID so it's available for our other operations in this app
         }
@@ -73,7 +72,6 @@ angular.module('appg.services', [])
   
   //retrieves data from Apigee
   this.getPosts = function(searchWord, cb){
-    console.log("inside PostSvc getPosts function and this is searchWord: ", searchWord);
     var properties = { 
       type:'postForSale',
       qs : "select * where headline contains '" + searchWord + "'"
@@ -87,7 +85,6 @@ angular.module('appg.services', [])
         console.log("this is errorMessage", errorMessage);   
         return "hello";                  
       } else{
-        console.log("success, here is entity: ", entity);
         cb(entity.entities);
       }
     }); 

@@ -19,7 +19,6 @@ angular.module('appg.postsCtrl', [])
           }
         }
       }
-      console.log("this is entitiesToShow: ", $scope.entitiesToShow);
     });
   };
 });
