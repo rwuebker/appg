@@ -15,16 +15,26 @@ angular.module('appg.services', [])
     }); 
   };
   this.login = function(username, password, cb){
-    console.log("inside the login function in UserSvc");
     var dataClient = initializeSDK();
     dataClient.login(username, password, function (error, response) {
-            if (error) {
-              console.log('this is the error: ', error);
-            } else {
-                cb(response.access_token);
-            }
-        }
-    );
+      if (error) {
+        console.log('this is the error: ', error);
+        alert("Invalid username or password");
+      } else {
+          cb(response.access_token);
+      }
+    });
+  };
+
+  this.signup = function(username, password, cb){
+    var dataClient = initializeSDK();
+    dataClient.signup(username, password, "notused", "notUsed", function(error, response){
+      if(error){
+        console.log("this is error: ", error);
+      }else{
+        cb(username, password);
+      }
+    })
   };
 })
 .service('PostsSvc', function($http){
@@ -42,11 +52,11 @@ angular.module('appg.services', [])
     }); 
   }
 
-  this.postPost = function(headline, desc){
+  this.postPost = function(headline, desc, price){
     var properties = {
       type:'postForSale',
       headline:headline,
-      price: 5.50,
+      price: price,
       desc: desc
     };
     var dataClient = initializeSDK();

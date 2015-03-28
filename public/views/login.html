@@ -1,12 +1,20 @@
 <div ng-controller="PostController" ng-hide=user id="posts">
 <div id="postsContainer">
   <h1>You must be logged in post!</h1>
-  <h4>If you don't have an account, enter a username and password and one will be created for when you click the button.</h4>
+  <h4>Log in, or sign up below</h4>
+  <h3>Log in:</h3>
   <div>Enter username:</div>
   <input ng-model='username' class='form-control' />
   <div>Enter password:</div>
-  <input ng-model='password' class='form-control' />
-  <button ng-click='login(username, password)' class='btn btn-default'>Log in / Sign up</button></br></br>
+  <input ng-model='password' type="password" class='form-control' />
+  <button ng-click='login(username, password)' class='btn btn-default'>Log in</button></br></br>
+
+  <h3>Sign up:</h3>
+  <div>Enter username:</div>
+  <input ng-model='username' class='form-control' />
+  <div>Enter password:</div>
+  <input ng-model='password' type="password" class='form-control' />
+  <button ng-click='signup(username, password)' class='btn btn-default'>Sign up</button></br></br>
 
 </div>
 

@@ -5,7 +5,9 @@
      <input ng-model='headline' class='form-control' />
      <div>Enter description, example: 'great deal, located in the Mission':</div>
      <input ng-model='desc' class='form-control' />
-     <button ng-click='addPost(headline, desc)' class='btn btn-default'>Click To Post Item</button></br></br>
+     <div>Enter a price in USD, example: 200</div>
+     <input ng-model='price' class='form-control'/>
+     <button ng-click='addPost(headline, desc, price)' class='btn btn-default'>Click To Post Item</button></br></br>
 <!--      <div ng-repeat='post in posts'>
        <div>{{post.headline}}</div>
        <div>{{post.description}}</div>

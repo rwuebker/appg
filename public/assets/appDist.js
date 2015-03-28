@@ -309,10 +309,11 @@ angular.module('appg.postCtrl', [])
 .controller('PostController', function($scope, PostsSvc, UserSvc, UserFactory){
   $scope.headline = "";
   $scope.desc = "";
+  $scope.price = "";
   $scope.data;
   $scope.user = UserFactory.getUser();
-  $scope.addPost = function(headline, desc){
-    PostsSvc.postPost(headline, desc, function(data){
+  $scope.addPost = function(headline, desc, price){
+    PostsSvc.postPost(headline, desc, price, function(data){
       $scope.data = data;
     });
   };
@@ -325,19 +326,35 @@ angular.module('appg.postCtrl', [])
       $scope.user = UserFactory.getUser();
     });
   };
+
+  $scope.signup = function(username, password){
+    UserSvc.signup(username, password, function(username, password){
+      UserSvc.login(username, password, function(token){
+        UserFactory.setUser(token);
+        $scope.user = UserFactory.getUser();
+      })
+    });
+  };
 });
 'use strict'
 angular.module('appg.postsCtrl', [])
 .controller('PostsController', function($scope, PostsSvc){
   $scope.searchWord = "";
+  $scope.searchWordDesc = "";
   $scope.posts;
-  $scope.getPosts = function(searchWord){
+  $scope.getPosts = function(searchWord, searchWordDesc){
     PostsSvc.getPosts(searchWord, function(entities){
       $scope.data = entities;
       $scope.entitiesToShow = [];
       for(var i = 0; i < entities.length; i++){
         if(entities[i].headline.indexOf(searchWord) !== -1){
-          $scope.entitiesToShow.push(entities[i]);
+          if(searchWordDesc !== ""){
+            if(entities[i].desc.indexOf(searchWordDesc) !== -1){
+              $scope.entitiesToShow.push(entities[i]);
+            } 
+          }else{
+            $scope.entitiesToShow.push(entities[i]);
+          }
         }
       }
       console.log("this is entitiesToShow: ", $scope.entitiesToShow);
@@ -432,16 +449,26 @@ angular.module('appg.services', [])
     }); 
   };
   this.login = function(username, password, cb){
-    console.log("inside the login function in UserSvc");
     var dataClient = initializeSDK();
     dataClient.login(username, password, function (error, response) {
-            if (error) {
-              console.log('this is the error: ', error);
-            } else {
-                cb(response.access_token);
-            }
-        }
-    );
+      if (error) {
+        console.log('this is the error: ', error);
+        alert("Invalid username or password");
+      } else {
+          cb(response.access_token);
+      }
+    });
+  };
+
+  this.signup = function(username, password, cb){
+    var dataClient = initializeSDK();
+    dataClient.signup(username, password, "notused", "notUsed", function(error, response){
+      if(error){
+        console.log("this is error: ", error);
+      }else{
+        cb(username, password);
+      }
+    })
   };
 })
 .service('PostsSvc', function($http){
@@ -459,11 +486,11 @@ angular.module('appg.services', [])
     }); 
   }
 
-  this.postPost = function(headline, desc){
+  this.postPost = function(headline, desc, price){
     var properties = {
       type:'postForSale',
       headline:headline,
-      price: 5.50,
+      price: price,
       desc: desc
     };
     var dataClient = initializeSDK();

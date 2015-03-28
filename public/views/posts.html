@@ -1,11 +1,14 @@
  <div ng-controller="PostsController" id="posts">
    <div id="postsContainer">
      <h1>Search Posts for Items for Sale</h1>
-     <div>Enter search word, example: 'tv':</div>
+     <div>Enter search word for the headline, example: 'tv':</div>
      <input ng-model='searchWord' class='form-control' />
-     <button ng-click='getPosts(searchWord)' class='btn btn-default'>Click To Get Posts</button></br></br>
+     <div>Enter search word for the description, example: 'large':</div>
+     <input ng-model='searchWordDesc' class='form-control' />
+     <button ng-click='getPosts(searchWord, searchWordDesc)' class='btn btn-default'>Click To Get Posts</button></br></br>
      <div ng-repeat='entity in entitiesToShow'>
-       <div>Headline:    {{entity.headline}}</div>
-       <div>Description :{{entity.desc}}</div></br>
+       <div>Headline: </br><i>{{entity.headline}}</i></div>
+       <div>Description:  </br><i>{{entity.desc}}</i></div>
+       <div>Price: </br> <i>${{entity.price}}</i></div></br>
      </div>
  </div>
