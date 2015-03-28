@@ -1,5 +1,5 @@
 'use strict'
-var appg = angular.module('appg', ['ui.router', 'appg.landingCtrl', 'appg.directives'])
+var appg = angular.module('appg', ['ui.router', 'appg.landingCtrl', 'appg.directives', 'appg.services', 'appg.postsCtrl', 'appg.postCtrl', 'appg.factories'])
 
 
 // console.log("hello");
@@ -23,17 +23,15 @@ var appg = angular.module('appg', ['ui.router', 'appg.landingCtrl', 'appg.direct
 //     //   template: '<appg-signup></appg-signup>',
 //     //   controller: 'SignupController'
 //     // })
-//     // .state('landing.search', {
-//     //   url:'/search',
-//     //   template: '<appg-search></appg-search>',
-//     //   controller: 'SearchController'
-//     // })
-//     // .state('landing.post', {
-//     //   url:'/post',
-//     //   template: '<appg-post></appg-post>',
-//     //   controller: 'PostController'
-//     // })
-
-
+    .state('landing.posts', {
+      url:'/posts',
+      template: '<appg-posts></appg-posts>',
+      controller: 'PostsController'
+    })
+    .state('landing.post', {
+      url:'/post',
+      template: '<appg-post></appg-post><appg-login></appg-login>',
+      controller: 'PostController'
+    })
 
 });

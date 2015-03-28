@@ -1,0 +1,11 @@
+ <div ng-controller="PostsController" id="posts">
+   <div id="postsContainer">
+     <h1>Search Posts for Items for Sale</h1>
+     <div>Enter search word, example: 'tv':</div>
+     <input ng-model='searchWord' class='form-control' />
+     <button ng-click='getPosts(searchWord)' class='btn btn-default'>Click To Get Posts</button></br></br>
+     <div ng-repeat='entity in entitiesToShow'>
+       <div>Headline:    {{entity.headline}}</div>
+       <div>Description :{{entity.desc}}</div></br>
+     </div>
+ </div>
