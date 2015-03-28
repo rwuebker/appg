@@ -13,16 +13,6 @@ var appg = angular.module('appg', ['ui.router', 'appg.landingCtrl', 'appg.direct
       url: '',
       template: '<appg-welcome></appg-welcome>'
     })
-//     // .state('landing.login', {
-//     //   url:'/login',
-//     //   template: '<appg-login></appg-login>',
-//     //   controller: 'LoginController'
-//     // })
-//     // .state('landing.signup', {
-//     //   url:'/signup',
-//     //   template: '<appg-signup></appg-signup>',
-//     //   controller: 'SignupController'
-//     // })
     .state('landing.posts', {
       url:'/posts',
       template: '<appg-posts></appg-posts>',
