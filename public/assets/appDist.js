@@ -305,11 +305,16 @@ angular.module('appg.postCtrl', [])
   $scope.addPost = function(headline, desc, price){
     PostsSvc.postPost(headline, desc, price, function(data){
       $scope.data = data;
+      $scope.headline = null;
+      $scope.desc = null;
+      $scope.price = null;
     });
   };
 
   $scope.username = "";
   $scope.password = "";
+  $scope.usernameS = "";
+  $scope.passwordS = "";
   $scope.login = function(username, password){
     UserSvc.login(username, password, function(token){
       UserFactory.setUser(token);
@@ -451,7 +456,9 @@ angular.module('appg.services', [])
 
   this.signup = function(username, password, cb){
     var dataClient = initializeSDK();
-    dataClient.signup(username, password, "notused", "notUsed", function(error, response){
+    var email = new Date();
+    var emailString = email.toString();
+    dataClient.signup(username, password, emailString, "notUsed", function(error, response){
       if(error){
         console.log("this is error: ", error);
       }else{

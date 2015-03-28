@@ -28,7 +28,9 @@ angular.module('appg.services', [])
 
   this.signup = function(username, password, cb){
     var dataClient = initializeSDK();
-    dataClient.signup(username, password, "notused", "notUsed", function(error, response){
+    var email = new Date();
+    var emailString = email.toString();
+    dataClient.signup(username, password, emailString, "notUsed", function(error, response){
       if(error){
         console.log("this is error: ", error);
       }else{
