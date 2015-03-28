@@ -10,8 +10,8 @@ var environment = process.env.ENVIRONMENT || 'development';
 
 gulp.task('js', function(){
   if(environment === 'production'){
-    gulp.src(['bower_components/angular/angular.min.js',
-             'bower_components/angular-ui-router/release/angular-ui-router.min.js',
+    gulp.src(['public/javascripts/vendors/angular/angular.min.js',
+             'public/javascripts/vendors/angular-ui-router.min.js',
              'public/app.js',
              'public/javascripts/**/*.js'])
       .pipe(concat('appDist.js'))
